@@ -2,10 +2,167 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title> GitHub Test Pages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>환영합니다! 나의 GitHub Pages</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0); /* 그라데이션 배경 */
+            color: #fff;
+            overflow: hidden; /* 오버플로우 숨기기 */
+        }
+
+        /* 컨테이너 스타일 */
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin: 20px;
+            transform: translateY(0);
+            animation: slideIn 1s ease-out forwards; /* 슬라이드 인 애니메이션 */
+            opacity: 0; /* 초기 투명 */
+        }
+
+        /* 제목 스타일 */
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 단락 스타일 */
+        p {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* 버튼 스타일 */
+        .btn {
+            background-color: #ff6b6b; /* 눈에 띄는 버튼 색상 */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease; /* 호버 효과 */
+            text-decoration: none; /* 링크 밑줄 제거 */
+            display: inline-block; /* 버튼처럼 보이게 */
+        }
+
+        .btn:hover {
+            background-color: #e63946;
+            transform: scale(1.05); /* 약간 커지는 효과 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* JavaScript로 제어할 텍스트 효과 */
+        .animated-text {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInAndSlideUp 0.8s forwards;
+        }
+
+        /* 키프레임 애니메이션 */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInAndSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 배경에 떠다니는 원 (움직이는 효과) */
+        .circle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none; /* 클릭 안 되게 */
+            animation: float 15s infinite ease-in-out alternate; /* 떠다니는 애니메이션 */
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(20px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello Hello Hello</h1>
-    <p>GitHub Test</p>
+    <div class="container">
+        <h1>
+            <span class="animated-text" style="animation-delay: 0.1s;">환영합니다,</span>
+            <span class="animated-text" style="animation-delay: 0.3s;">나의</span>
+            <span class="animated-text" style="animation-delay: 0.5s;">GitHub</span>
+            <span class="animated-text" style="animation-delay: 0.7s;">Pages!</span>
+        </h1>
+        <p>
+            <span class="animated-text" style="animation-delay: 0.9s;">이 페이지는</span>
+            <span class="animated-text" style="animation-delay: 1.1s;">당신을 위해</span>
+            <span class="animated-text" style="animation-delay: 1.3s;">특별히</span>
+            <span class="animated-text" style="animation-delay: 1.5s;">꾸며졌습니다.</span>
+            <span class="animated-text" style="animation-delay: 1.7s;">즐거운 시간</span>
+            <span class="animated-text" style="animation-delay: 1.9s;">되세요!</span>
+        </p>
+        <a href="#" class="btn">더 알아보기</a>
+    </div>
+
+    <script>
+        // JavaScript로 배경에 움직이는 원 추가
+        const body = document.body;
+        const numCircles = 10; // 원의 개수
+
+        for (let i = 0; i < numCircles; i++) {
+            const circle = document.createElement('div');
+            circle.classList.add('circle');
+            const size = Math.random() * 100 + 30; // 30px ~ 130px
+            circle.style.width = `${size}px`;
+            circle.style.height = `${size}px`;
+            circle.style.left = `${Math.random() * 100}vw`; // 뷰포트 너비 내에서 랜덤 위치
+            circle.style.top = `${Math.random() * 100}vh`;  // 뷰포트 높이 내에서 랜덤 위치
+            circle.style.animationDelay = `${Math.random() * 5}s`; // 애니메이션 지연
+            circle.style.animationDuration = `${Math.random() * 10 + 10}s`; // 애니메이션 속도
+            body.appendChild(circle);
+        }
+
+        // 버튼 클릭 이벤트 (예시)
+        document.querySelector('.btn').addEventListener('click', function(e) {
+            e.preventDefault(); // 기본 링크 동작 방지
+            alert('아직 준비되지 않은 페이지입니다! ✨');
+        });
+    </script>
 </body>
 </html>
